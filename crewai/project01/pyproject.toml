@@ -16,6 +16,8 @@ project01 = "project01:main"
 piaic = "project01.main:kickoff"
 chain_prompt = "project01.main:kickoff"
 fun_fact ="project01.main1:kickoff"
+generate_topic = "project01.main2:kickoff"
+chain_prompt_flow = "project01.main2:plot"
 
 [build-system]
 requires = ["hatchling"]
