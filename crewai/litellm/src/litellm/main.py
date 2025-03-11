@@ -1,66 +1,53 @@
 #!/usr/bin/env python
-import sys
-import warnings
+from random import randint
 
-from datetime import datetime
+from pydantic import BaseModel
 
-from litellm.crew import Litellm
+from crewai.flow import Flow, listen, start
 
-warnings.filterwarnings("ignore", category=SyntaxWarning, module="pysbd")
-
-# This main file is intended to be a way for you to run your
-# crew locally, so refrain from adding unnecessary logic into this file.
-# Replace with inputs you want to test with, it will automatically
-# interpolate any tasks and agents information
-
-def run():
-    """
-    Run the crew.
-    """
-    inputs = {
-        'topic': 'AI LLMs',
-        'current_year': str(datetime.now().year)
-    }
-    
-    try:
-        Litellm().crew().kickoff(inputs=inputs)
-    except Exception as e:
-        raise Exception(f"An error occurred while running the crew: {e}")
+from litellm.crews.poem_crew.poem_crew import PoemCrew
 
 
-def train():
-    """
-    Train the crew for a given number of iterations.
-    """
-    inputs = {
-        "topic": "AI LLMs"
-    }
-    try:
-        Litellm().crew().train(n_iterations=int(sys.argv[1]), filename=sys.argv[2], inputs=inputs)
+class PoemState(BaseModel):
+    sentence_count: int = 1
+    poem: str = ""
 
-    except Exception as e:
-        raise Exception(f"An error occurred while training the crew: {e}")
 
-def replay():
-    """
-    Replay the crew execution from a specific task.
-    """
-    try:
-        Litellm().crew().replay(task_id=sys.argv[1])
+class PoemFlow(Flow[PoemState]):
 
-    except Exception as e:
-        raise Exception(f"An error occurred while replaying the crew: {e}")
+    @start()
+    def generate_sentence_count(self):
+        print("Generating sentence count")
+        self.state.sentence_count = randint(1, 5)
 
-def test():
-    """
-    Test the crew execution and returns the results.
-    """
-    inputs = {
-        "topic": "AI LLMs",
-        "current_year": str(datetime.now().year)
-    }
-    try:
-        Litellm().crew().test(n_iterations=int(sys.argv[1]), openai_model_name=sys.argv[2], inputs=inputs)
+    @listen(generate_sentence_count)
+    def generate_poem(self):
+        print("Generating poem")
+        result = (
+            PoemCrew()
+            .crew()
+            .kickoff(inputs={"sentence_count": self.state.sentence_count})
+        )
 
-    except Exception as e:
-        raise Exception(f"An error occurred while testing the crew: {e}")
+        print("Poem generated", result.raw)
+        self.state.poem = result.raw
+
+    @listen(generate_poem)
+    def save_poem(self):
+        print("Saving poem")
+        with open("poem.txt", "w") as f:
+            f.write(self.state.poem)
+
+
+def kickoff():
+    poem_flow = PoemFlow()
+    poem_flow.kickoff()
+
+
+def plot():
+    poem_flow = PoemFlow()
+    poem_flow.plot()
+
+
+if __name__ == "__main__":
+    kickoff()
