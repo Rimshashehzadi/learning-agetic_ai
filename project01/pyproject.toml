@@ -1,5 +1,5 @@
 [project]
-name = "litellm"
+name = "project01"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -7,15 +7,10 @@ authors = [
     { name = "rimsha_bibi", email = "108316811+Rimshashehzadi@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
-dependencies = [
-    "crewai>=0.55.2",
-]
+dependencies = []
 
 [project.scripts]
-litellm = "litellm:main"
-gemini = "litellm:gemini_key"
-hello_gemini = "litellm.gemini_key:gemini_key"
-
+project01 = "project01:main"
 
 [build-system]
 requires = ["hatchling"]
