@@ -7,10 +7,15 @@ authors = [
     { name = "rimsha_bibi", email = "108316811+Rimshashehzadi@users.noreply.github.com" }
 ]
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "crewai>=0.105.0",
+]
 
 [project.scripts]
 project01 = "project01:main"
+piaic = "project01.main:kickoff"
+chain_prompt = "project01.main:kickoff"
+fun_fact ="project01.main1:kickoff"
 
 [build-system]
 requires = ["hatchling"]
