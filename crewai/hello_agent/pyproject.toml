@@ -11,6 +11,7 @@ dependencies = [
 [project.scripts]
 kickoff = "hello_agent.main:kickoff"
 plot = "hello_agent.main:plot"
+hello_flow = "hello_agent.main1:run_flow"
 
 [build-system]
 requires = ["hatchling"]
