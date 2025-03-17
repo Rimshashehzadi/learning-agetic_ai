@@ -11,6 +11,7 @@ dependencies = [
 [project.scripts]
 kickoff = "multiple_agent.main:kickoff"
 plot = "multiple_agent.main:plot"
+mul_agents="multiple_agent.main1:kickoff"
 
 [build-system]
 requires = ["hatchling"]
