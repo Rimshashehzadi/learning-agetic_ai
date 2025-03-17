@@ -1,0 +1,23 @@
+[project]
+name = "ui"
+version = "0.1.0"
+description = "ui using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "chainlit>=2.4.1",
+    "crewai[tools]>=0.105.0,<1.0.0",
+    "openai-agents>=0.0.4",
+    "python-dotenv>=1.0.1",
+]
+
+[project.scripts]
+kickoff = "ui.main:kickoff"
+plot = "ui.main:plot"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "flow"
