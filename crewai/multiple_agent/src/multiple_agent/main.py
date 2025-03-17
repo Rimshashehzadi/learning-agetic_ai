@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 from random import randint
 
-from pydantic import BaseModel
+from pydantic import BaseModel # type: ignore
 
-from crewai.flow import Flow, listen, start
+from crewai.flow import Flow, listen, start # type: ignore
 
 from multiple_agent.crews.poem_crew.poem_crew import PoemCrew
 

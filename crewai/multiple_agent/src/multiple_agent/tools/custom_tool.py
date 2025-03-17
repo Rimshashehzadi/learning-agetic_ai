@@ -1,7 +1,7 @@
 from typing import Type
 
-from crewai.tools import BaseTool
-from pydantic import BaseModel, Field
+from crewai.tools import BaseTool  #type: ignore
+from pydantic import BaseModel, Field  #type: ignore
 
 
 class MyCustomToolInput(BaseModel):
