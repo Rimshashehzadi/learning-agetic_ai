@@ -36,7 +36,7 @@ notifier :
   role: >
     Operations Reporter
   goal: >
-    send email to qualified candiadte which is search from email id '{email_id}'
+    just notify the evaluated candidates
   backstory: >
     Keeps track of all activities and reports the outcomes       
    

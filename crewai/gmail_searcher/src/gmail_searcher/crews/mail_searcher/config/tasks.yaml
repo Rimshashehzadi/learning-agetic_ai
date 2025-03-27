@@ -28,7 +28,7 @@ meeting_scheduling_task:
 
 notification_task:
   description: >
-    Provide a summary of the actions taken, including the number of emails checked and the number of meetings scheduled.
+    send email to qualified candiadte which is search from email id '{email_id}'
   expected_output: >
     Provide a summary of scheduled meeting.",
   agent: notifier 
