@@ -1,0 +1,35 @@
+gmail_search_task:
+  description: >
+    Search Gmail from '{email_id}' for new emails related to job hiring. Use a relevant search query like 'job application', 'hiring', or 'resume attached'
+  expected_output: >
+    Provide a list of email IDs found
+  agent: gmail_searcher
+
+email_extraction_task:
+  description: >
+    Extract the content (sender, subject, body, attachments) from the identified emails in '{email_id}'.
+  expected_output: >
+    Provide a list of dictionaries with email details.
+  agent: email_analyzer 
+
+candidate_evaluation_task:
+  description: >
+    Evaluate each candidate based on the email content and predefined criteria. Determine if they meet the requirements.
+  expected_output: >
+    Provide a list of candidate evaluation results (email and whether they meet criteria).
+  agent: candidate_evaluator  
+
+meeting_scheduling_task:
+  description: >
+    For each candidate that meets the criteria, schedule a Zoom meeting and send the details to their '{email_id}'. The meeting should be scheduled for the next business day at 10:00 AM PST.
+  expected_output: >
+    Provide a confirmation message for each scheduled meeting.",
+  agent: meeting_scheduler  
+
+notification_task:
+  description: >
+    Provide a summary of the actions taken, including the number of emails checked and the number of meetings scheduled.
+  expected_output: >
+    Provide a summary of scheduled meeting.",
+  agent: notifier 
+
