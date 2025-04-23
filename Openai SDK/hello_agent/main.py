@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv # type: ignore
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel # type: ignore
-from agents.run import RunConfig # type: ignore
+from dotenv import load_dotenv
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel
+from agents.run import RunConfig
 import asyncio
 
 # Load the environment variables from the .env file
@@ -16,11 +16,11 @@ if not gemini_api_key:
 #Reference: https://ai.google.dev/gemini-api/docs/openai
 external_client = AsyncOpenAI(
     api_key=gemini_api_key,
-    base_url="google/gemini-flash-1.5-8b",
+    base_url="https://generativelanguage.googleapis.com/v1beta/openai/",
 )
 
 model = OpenAIChatCompletionsModel(
-    model="gemini-1.5-flash",
+    model="gemini-2.0-flash",
     openai_client=external_client
 )
 
