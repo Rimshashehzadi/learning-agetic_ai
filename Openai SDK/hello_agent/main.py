@@ -1,7 +1,7 @@
 import os
-from dotenv import load_dotenv
-from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel
-from agents.run import RunConfig
+from dotenv import load_dotenv # type: ignore
+from agents import Agent, Runner, AsyncOpenAI, OpenAIChatCompletionsModel # type: ignore
+from agents.run import RunConfig # type: ignore
 import asyncio
 
 # Load the environment variables from the .env file
