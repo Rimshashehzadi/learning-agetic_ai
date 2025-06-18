@@ -1,7 +1,7 @@
 import asyncio
 from openai import AsyncOpenAI
-from agents import Agent, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
-
+from agents import Agent,Runner,function_tool, OpenAIChatCompletionsModel, Runner, set_tracing_disabled
+# from aents.extensions.models.litellm_model import LitellmModel
 from dotenv import load_dotenv
 import os
 
@@ -15,6 +15,10 @@ client = AsyncOpenAI(
 )
 
 set_tracing_disabled(disabled=True)
+
+
+
+
 
 async def main():
     # This agent will use the custom LLM provider
